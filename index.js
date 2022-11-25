@@ -12,48 +12,21 @@ admin.initializeApp({
 });
 const db = admin.firestore();
 
-// create
-app.post("/api/create", (req, res) => {
+// read vehicles
+app.get("/vehicles", (req, res) => {
 	(async () => {
 		try {
-			await db
-				.collection("items")
-				.doc("/" + req.body.id + "/")
-				.create({ item: req.body.item });
-			return res.status(200).send();
-		} catch (error) {
-			console.log(error);
-			return res.status(500).send(error);
-		}
-	})();
-});
-
-// read item
-app.get("/api/readitem/:item_id", (req, res) => {
-	(async () => {
-		try {
-			const document = db.collection("items").doc(req.params.item_id);
-			let item = await document.get();
-			let response = item.data();
-			return res.status(200).send(response);
-		} catch (error) {
-			console.log(error);
-			return res.status(500).send(error);
-		}
-	})();
-});
-// read all
-app.get("/api/readall", (req, res) => {
-	(async () => {
-		try {
-			let query = db.collection("items");
+			let query = db.collection("vehicles");
 			let response = [];
 			await query.get().then((querySnapshot) => {
 				let docs = querySnapshot.docs;
 				for (let doc of docs) {
 					const selectedItem = {
-						id: doc.id,
-						item: doc.data().item,
+						// id: doc.id,
+						value: doc.data().value,
+						label: doc.data().label,
+						tank: doc.data().tank,
+						performance: doc.data().performance,
 					};
 					response.push(selectedItem);
 				}
@@ -65,28 +38,52 @@ app.get("/api/readall", (req, res) => {
 		}
 	})();
 });
-// update
-app.put("/api/update/:item_id", (req, res) => {
+
+app.get("/trips", (req, res) => {
 	(async () => {
 		try {
-			const document = db.collection("items").doc(req.params.item_id);
-			await document.update({
-				item: req.body.item,
+			let query = db.collection("trips");
+			let response = [];
+			await query.get().then((querySnapshot) => {
+				let docs = querySnapshot.docs;
+				for (let doc of docs) {
+					const selectedItem = {
+						// id: doc.id,
+						value: doc.data().value,
+						label: doc.data().label,
+						start_coords: doc.data().start_coords,
+						destination_coords: doc.data().destination_coords,
+					};
+					response.push(selectedItem);
+				}
 			});
-			return res.status(200).send();
+			return res.status(200).send(response);
 		} catch (error) {
 			console.log(error);
 			return res.status(500).send(error);
 		}
 	})();
 });
-// delete
-app.delete("/api/delete/:item_id", (req, res) => {
+
+app.get("/fuels", (req, res) => {
 	(async () => {
 		try {
-			const document = db.collection("items").doc(req.params.item_id);
-			await document.delete();
-			return res.status(200).send();
+			let query = db.collection("fuels");
+			let response = [];
+			await query.get().then((querySnapshot) => {
+				let docs = querySnapshot.docs;
+				for (let doc of docs) {
+					const selectedItem = {
+						// id: doc.id,
+						value: doc.data().value,
+						label: doc.data().label,
+						city: doc.data().city,
+						coords: doc.data().coords,
+					};
+					response.push(selectedItem);
+				}
+			});
+			return res.status(200).send(response);
 		} catch (error) {
 			console.log(error);
 			return res.status(500).send(error);
