@@ -5,7 +5,7 @@ cors = require("cors");
 app = express();
 app.use(cors({ origin: true }));
 
-var serviceAccount = require("./ChaveAcesso.json");
+var serviceAccount = require("./KeyAcess.json");
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://rota-mandacaru.firebaseio.com",
