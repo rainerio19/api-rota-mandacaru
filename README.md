@@ -2,11 +2,11 @@
 <h1 align="center">Api Rota Mandacaru</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/rainerio19/functions?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/rainerio19/api-rota-mandacaru?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/rainerio19/functions?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/rainerio19/api-rota-mandacaru?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rainerio19/functions?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/rainerio19/api-rota-mandacaru?color=56BEB8">
 
 </p>
 
